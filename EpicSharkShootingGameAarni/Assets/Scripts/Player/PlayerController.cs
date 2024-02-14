@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+       Move();
     }
     void Move(){
         moveInput = controls.Player.Move.ReadValue<Vector2>();
