@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
+    public Transform gunTransform;
     public float moveSpeed = 5f;
 
     private Master controls;
@@ -24,14 +25,25 @@ public class PlayerController : MonoBehaviour
         controls.Disable();
          }
 
-
-    // Start is called before the first frame update
+// hello you have found my player controller script, please die now
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    void Update(){
+        Shoot();
+    }
+
+    private void Shoot(){
+        if(controls.Player.Fire.triggered){
+            Debug.Log("this is an easter egg. --> 0 <-- (literally)");
+            GameObject bullet = BulletPoolManager.Instance.GetBullet();
+            bullet.transform.position = gunTransform.position;
+            bullet.transform.rotation = gunTransform.rotation;
+        }
+    }
+
     void FixedUpdate()
     {
        Move();
