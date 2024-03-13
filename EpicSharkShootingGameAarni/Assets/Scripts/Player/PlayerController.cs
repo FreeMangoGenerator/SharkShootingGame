@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveInput;
 
+    private Vector2 aimInput;
+
     void Awake(){
         controls = new Master();
         body = GetComponent<Rigidbody2D>();
@@ -33,12 +35,26 @@ public class PlayerController : MonoBehaviour
 
     void Update(){
         Shoot();
+        Aim();
+    }
+    private void Aim(){
+        aimInput = controls.Player.Aim.ReadValue<Vector2>();
+        Debug.Log(aimInput);
+    }
+    private bool UsingMouse(){
+        if(Mouse.current.delta.ReadValue().sqrMagnitude > 0.1){
+            return true;
+        }
+        return false;
     }
 
     private void Shoot(){
         if(controls.Player.Fire.triggered){
-            Debug.Log("this is an easter egg. --> 0 <-- (literally)");
+            Debug.Log("=)");
             GameObject bullet = BulletPoolManager.Instance.GetBullet();
+            if(bullet == null){
+                return;
+            }
             bullet.transform.position = gunTransform.position;
             bullet.transform.rotation = gunTransform.rotation;
         }
