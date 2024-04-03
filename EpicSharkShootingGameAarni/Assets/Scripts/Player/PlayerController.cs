@@ -30,9 +30,10 @@ public class PlayerController : MonoBehaviour
 // hello you have found my player controller script, please die now
     void Start()
     {
-        
+        GameManager.Instance.GetPlayer = this;
     }
-
+     
+    
     void Update(){
         Shoot();
         Aim();

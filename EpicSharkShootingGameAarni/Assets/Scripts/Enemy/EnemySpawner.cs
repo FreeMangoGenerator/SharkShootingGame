@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public float spawnRadius = 10f;
     public float spawnInterval = 2f;
     float nextSpawnTime;
+    Transform playerTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +23,17 @@ public class EnemySpawner : MonoBehaviour
         SpawnEnemy();
     }
     void SpawnEnemy(){
-        GameObject enemy = EnemyPoolManager. Instance.GetEnemy();
-        enemy.transform.position = transform.position;
+        if(playerTransform == null){
+            GetPlayer();
+        }
+        
+    Vector2 spawnPos = playerTransform.position;
+    spawnPos += Random.insideUnitCircle.normalized * spawnRadius;
+    GameObject enemy = EnemyPoolManager.Instance.GetEnemy();
+        enemy.transform.position = spawnPos;
         nextSpawnTime = Time.time + spawnInterval;
-
+    }
+    void GetPlayer(){
+        playerTransform = GameManager.Instance.GetPlayer.transform;
     }
 }
