@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable //🥶💀
 {
+    public int maxHP = 10;
+    private int currentHP;
     public Transform gunTransform;
     public float moveSpeed = 5f;
     public Sprite sideSprite;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         GameManager.Instance.GetPlayer = this;
+        currentHP = maxHP;
     }
      
     
@@ -101,4 +104,14 @@ public class PlayerController : MonoBehaviour
         Vector2 movement = new Vector2(moveInput.x, moveInput.y) * moveSpeed * Time.fixedDeltaTime;
         body.MovePosition(body.position + movement);
     }
+    public void TakeDamage(int damage){
+        currentHP -= damage;
+        if(currentHP <= 0){
+            Die();
+        }
+    }
+    public void Die(){
+        Debug.Log("I love goat cheese but sadly I have to eat Diarrhea");
+    }
+
 }

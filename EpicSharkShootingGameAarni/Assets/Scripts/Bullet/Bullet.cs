@@ -25,6 +25,11 @@ public class Bullet : MonoBehaviour
         }
     }
     void OnTriggerEnter2D(Collider2D other) {
+
+        if(other.CompareTag("Player")){
+            return;
+        }
+
         IDamageable damageable = other.GetComponent<IDamageable>();
         if(damageable != null){
             damageable.TakeDamage(1);

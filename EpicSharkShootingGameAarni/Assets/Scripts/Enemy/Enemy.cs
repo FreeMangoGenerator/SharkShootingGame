@@ -96,9 +96,9 @@ private void Attack(){
         EnemyPoolManager.Instance.ReturnEnemy(gameObject);
     }
     void OnTriggerEnter2D(Collider2D other){
-        IDamageable damageable = other.GetComponent<IDamageable>();
-        if(damageable != null){
-            damageable.TakeDamage(1);
+        if(other.CompareTag("Player") && isDashing){
+            other.GetComponent<IDamageable>().TakeDamage(1);
+        }
         }
     }
-}
+
