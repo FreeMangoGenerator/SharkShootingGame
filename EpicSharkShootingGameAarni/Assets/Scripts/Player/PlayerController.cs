@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour, IDamageable //🥶💀
 {
+    public GameObject deathParticle;
     public int maxHP = 10;
     private int currentHP;
     public Transform gunTransform;
@@ -111,7 +112,9 @@ public class PlayerController : MonoBehaviour, IDamageable //🥶💀
         }
     }
     public void Die(){
-        Debug.Log("I love goat cheese but sadly I have to eat Diarrhea");
+        Debug.Log("I love goat cheese but sadly I have to eat Diarrhea"); // True
+        Instantiate(deathParticle,transform.position, Quaternion.identity);
+        GameManager.Instance.ChangeGameState(GameState.GameOver);
     }
 
 }

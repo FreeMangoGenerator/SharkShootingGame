@@ -650,6 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5801e11dc748e934fa5d9536fb7d677d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathParticle: {fileID: 3031186832290696870, guid: 578b4a06f68192d478418de712d5eedd, type: 3}
   maxHP: 10
   gunTransform: {fileID: 729279743}
   moveSpeed: 5
@@ -812,6 +813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bf7da19278ad94c965275d9be152d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
 --- !u!4 &2089656510
 Transform:
   m_ObjectHideFlags: 0
